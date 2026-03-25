@@ -48,19 +48,6 @@ D. Dans la base de données
 
 Question 5
 
-Quel est le bon moyen de relier un fichier JavaScript externe à une page HTML ?
-
-A. <link rel="script" href="script.js">
-
-B. <javascript src="script.js"></javascript>
-
-C. <script src="script.js"></script>
-
-D. <js file="script.js"></js>
-Voici 5 nouvelles questions simples sur JavaScript avec propositions de réponses.
-
-Question 6
-
 Quel mot‑clé permet de définir une constante (valeur non réassignable) en JavaScript ?
 
 A. var
@@ -71,7 +58,7 @@ C. const
 
 D. static
 
-Question 7
+Question 6
 
 Que fait l’instruction console.log("Hello"); ?
 
@@ -83,7 +70,7 @@ C. Enregistre "Hello" dans un fichier
 
 D. Envoie "Hello" au serveur
 
-Question 8
+Question 7
 
 Quel type de valeur peut avoir un Boolean en JavaScript ?
 
@@ -95,7 +82,7 @@ C. true ou false
 
 D. "true" ou "false" uniquement sous forme de texte
 
-Question 9
+Question 8
 
 Que signifie DOM en développement web ?
 
@@ -107,7 +94,7 @@ C. Dynamic Operation Mode
 
 D. Document Oriented Module
 
-Question 10
+Question 9
 
 Quelle méthode est utilisée pour sélectionner un élément dans la page par son id en JavaScript ?
 
