@@ -8,7 +8,11 @@
 </head>
 <body>
 <header><h1>Quiz JavaScript</h1></header>
+<div id="progression">Question <span id="num-question">1</span>/10</div>
 <div class="quiz-container">
+    <div id="suivant">
+        <button id="btn-suivant" style="display:none;">Suivant</button>
+    </div>
 <section class="question1">
     <h4>Question 1 :</h4>
         <h5>Que permet principalement de faire JavaScript dans une page web ?</h5>
@@ -16,6 +20,7 @@
             <button class="reponse2">B. Ajouter du style et des couleurs</button>
             <button class="reponse3">C. Rendre la page interactive et dynamique</button>
             <button class="reponse4">D. Gérer la base de données</button>
+            <div class="explication"></div>
 </section>
 <section class="question2">
     <h4>Question 2 :</h4>
@@ -24,6 +29,7 @@
             <button class="reponse2">B. let x = 5;</button>
             <button class="reponse3">C. var: x = 5;</button>
             <button class="reponse4">D. const variable x = 5;</button>
+            <div class="explication"></div>
 </section>
 <section class="question3">
     <h4>Question 3 :</h4>
@@ -32,6 +38,7 @@
             <button class="reponse2">B. String (chaîne de caractères)</button>
             <button class="reponse3">C. Boolean</button>
             <button class="reponse4">D. Object</button>
+            <div class="explication"></div>
 </section>
 <section class="question4">
     <h4>Question 4 :</h4>
@@ -40,6 +47,7 @@
             <button class="reponse2">B. Dans le serveur de fichiers</button>
             <button class="reponse3">C. Dans le système d’exploitation</button>
             <button class="reponse4">D. Dans la base de données</button>
+            <div class="explication"></div>
 </section>
 <section class="question5">
     <h4>Question 5 :</h4>
@@ -48,6 +56,7 @@
             <button class="reponse2">B. let</button>
             <button class="reponse3">C. const</button>
             <button class="reponse4">D. static</button>
+            <div class="explication"></div>
 </section>
 <section class="question6">
     <h4>Question 6 :</h4>
@@ -56,6 +65,7 @@
             <button class="reponse2">B. Affiche "Hello" dans la console du navigateur</button>
             <button class="reponse3">C. Enregistre "Hello" dans un fichier</button>
             <button class="reponse4">D. Envoie "Hello" au serveur</button>
+            <div class="explication"></div>
 </section>
 <section class="question7">
     <h4>Question 7 :</h4>
@@ -64,6 +74,7 @@
             <button class="reponse2">B. yes ou no</button>
             <button class="reponse3">C. true ou false</button>
             <button class="reponse4">D. "true" ou "false" uniquement sous forme de texte</button>
+            <div class="explication"></div>
 </section>
 <section class="question8">
     <h4>Question 8 :</h4>
@@ -72,6 +83,7 @@
             <button class="reponse2">B. Data Object Manager</button>
             <button class="reponse3">C. Dynamic Operation Mode</button>
             <button class="reponse4">D. Document Oriented Module</button>
+            <div class="explication"></div>
 </section>
 <section class="question9">
     <h4>Question 9 :</h4>
@@ -80,6 +92,7 @@
             <button class="reponse2">B. document.querySelector("monId")</button>
             <button class="reponse3">C. document.getElement("monId")</button>
             <button class="reponse4">D. document.getElementById("monId")</button>
+            <div class="explication"></div>
 </section>
 <section class="question10">
     <h4>Question 10 :</h4>
@@ -88,8 +101,9 @@
             <button class="reponse2">B. null</button>
             <button class="reponse3">C. undefined</button>
             <button class="reponse4">D. "" (chaîne vide)</button>
+            <div class="explication"></div>
 </section>
 </div>
-<script src="script.js"></script>   
+<script src="script.js"></script>  
 </body>
 </html>
