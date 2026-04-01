@@ -7,103 +7,144 @@
     <title>Quiz JavaScript</title>
 </head>
 <body>
+
 <header><h1>Quiz JavaScript</h1></header>
+
 <div id="progression">Question <span id="num-question">1</span>/10</div>
+
 <div class="quiz-container">
-    <div id="suivant">
-        <button id="btn-suivant" style="display:none;">Suivant</button>
-    </div>
+
+<div id="suivant">
+<button id="btn-suivant">Suivant</button>    
+</div>
+
+<div class="valide">
+<button id="btn-valider">Valider</button>
+</div>
+
 <section class="question1">
     <h4>Question 1 :</h4>
-        <h5>Que permet principalement de faire JavaScript dans une page web ?</h5>
-            <button class="reponse1">A. Décrire la structure de la page</button>
-            <button class="reponse2">B. Ajouter du style et des couleurs</button>
-            <button class="reponse3">C. Rendre la page interactive et dynamique</button>
-            <button class="reponse4">D. Gérer la base de données</button>
-            <div class="explication"></div>
+    <h5>Que permet principalement de faire JavaScript dans une page web ?</h5>
+
+    <label><input type="radio" name="reponse1" value="0"> A. Décrire la structure de la page</label><br>
+    <label><input type="radio" name="reponse1" value="1"> B. Ajouter du style et des couleurs</label><br>
+    <label><input type="radio" name="reponse1" value="2"> C. Rendre la page interactive et dynamique</label><br>
+    <label><input type="radio" name="reponse1" value="3"> D. Gérer la base de données</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question2">
     <h4>Question 2 :</h4>
-        <h5>Comment déclare‑t‑on une variable en JavaScript (syntax moderne) ?</h5>
-            <button class="reponse1">A. variable x = 5;</button>
-            <button class="reponse2">B. let x = 5;</button>
-            <button class="reponse3">C. var: x = 5;</button>
-            <button class="reponse4">D. const variable x = 5;</button>
-            <div class="explication"></div>
+    <h5>Comment déclare-t-on une variable en JavaScript (syntax moderne) ?</h5>
+
+    <label><input type="radio" name="reponse2" value="0"> A. variable x = 5;</label><br>
+    <label><input type="radio" name="reponse2" value="1"> B. let x = 5;</label><br>
+    <label><input type="radio" name="reponse2" value="2"> C. var: x = 5;</label><br>
+    <label><input type="radio" name="reponse2" value="3"> D. const variable x = 5;</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question3">
     <h4>Question 3 :</h4>
-        <h5>Quel type de données représente "42" (avec des guillemets) en JavaScript ?</h5>
-            <button class="reponse1">A.Number</button>
-            <button class="reponse2">B. String (chaîne de caractères)</button>
-            <button class="reponse3">C. Boolean</button>
-            <button class="reponse4">D. Object</button>
-            <div class="explication"></div>
+    <h5>Quel type de données représente "42" (avec des guillemets) en JavaScript ?</h5>
+
+    <label><input type="radio" name="reponse3" value="0"> A. Number</label><br>
+    <label><input type="radio" name="reponse3" value="1"> B. String (chaîne de caractères)</label><br>
+    <label><input type="radio" name="reponse3" value="2"> C. Boolean</label><br>
+    <label><input type="radio" name="reponse3" value="3"> D. Object</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question4">
     <h4>Question 4 :</h4>
-        <h5>Où s’exécute le plus souvent le JavaScript d’un site web ?</h5>
-            <button class="reponse1">A. Dans le navigateur de l’utilisateur</button>
-            <button class="reponse2">B. Dans le serveur de fichiers</button>
-            <button class="reponse3">C. Dans le système d’exploitation</button>
-            <button class="reponse4">D. Dans la base de données</button>
-            <div class="explication"></div>
+    <h5>Où s’exécute le plus souvent le JavaScript d’un site web ?</h5>
+
+    <label><input type="radio" name="reponse4" value="0"> A. Dans le navigateur de l’utilisateur</label><br>
+    <label><input type="radio" name="reponse4" value="1"> B. Dans le serveur de fichiers</label><br>
+    <label><input type="radio" name="reponse4" value="2"> C. Dans le système d’exploitation</label><br>
+    <label><input type="radio" name="reponse4" value="3"> D. Dans la base de données</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question5">
     <h4>Question 5 :</h4>
-        <h5>Quel mot‑clé permet de définir une constante (valeur non réassignable) en JavaScript ?</h5>
-            <button class="reponse1">A. var</button>
-            <button class="reponse2">B. let</button>
-            <button class="reponse3">C. const</button>
-            <button class="reponse4">D. static</button>
-            <div class="explication"></div>
+    <h5>Quel mot-clé permet de définir une constante ?</h5>
+
+    <label><input type="radio" name="reponse5" value="0"> A. var</label><br>
+    <label><input type="radio" name="reponse5" value="1"> B. let</label><br>
+    <label><input type="radio" name="reponse5" value="2"> C. const</label><br>
+    <label><input type="radio" name="reponse5" value="3"> D. static</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question6">
     <h4>Question 6 :</h4>
-        <h5>Que fait l’instruction console.log("Hello"); ?</h5>
-            <button class="reponse1">A. Affiche "Hello" dans la page HTML</button>
-            <button class="reponse2">B. Affiche "Hello" dans la console du navigateur</button>
-            <button class="reponse3">C. Enregistre "Hello" dans un fichier</button>
-            <button class="reponse4">D. Envoie "Hello" au serveur</button>
-            <div class="explication"></div>
+    <h5>Que fait console.log("Hello"); ?</h5>
+
+    <label><input type="radio" name="reponse6" value="0"> A. Affiche "Hello" dans la page HTML</label><br>
+    <label><input type="radio" name="reponse6" value="1"> B. Affiche "Hello" dans la console du navigateur</label><br>
+    <label><input type="radio" name="reponse6" value="2"> C. Enregistre "Hello" dans un fichier</label><br>
+    <label><input type="radio" name="reponse6" value="3"> D. Envoie "Hello" au serveur</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question7">
     <h4>Question 7 :</h4>
-        <h5>Quel type de valeur peut avoir un Boolean en JavaScript ?</h5>
-            <button class="reponse1">A. 0 ou 1</button>
-            <button class="reponse2">B. yes ou no</button>
-            <button class="reponse3">C. true ou false</button>
-            <button class="reponse4">D. "true" ou "false" uniquement sous forme de texte</button>
-            <div class="explication"></div>
+    <h5>Quel type de valeur peut avoir un Boolean en JavaScript ?</h5>
+
+    <label><input type="radio" name="reponse7" value="0"> A. 0 ou 1</label><br>
+    <label><input type="radio" name="reponse7" value="1"> B. yes ou no</label><br>
+    <label><input type="radio" name="reponse7" value="2"> C. true ou false</label><br>
+    <label><input type="radio" name="reponse7" value="3"> D. "true" ou "false" uniquement sous forme de texte</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question8">
     <h4>Question 8 :</h4>
-        <h5>Que signifie DOM en développement web ?</h5>
-            <button class="reponse1">A. Document Object Model</button>
-            <button class="reponse2">B. Data Object Manager</button>
-            <button class="reponse3">C. Dynamic Operation Mode</button>
-            <button class="reponse4">D. Document Oriented Module</button>
-            <div class="explication"></div>
+    <h5>Que signifie DOM en développement web ?</h5>
+
+    <label><input type="radio" name="reponse8" value="0"> A. Document Object Model</label><br>
+    <label><input type="radio" name="reponse8" value="1"> B. Data Object Manager</label><br>
+    <label><input type="radio" name="reponse8" value="2"> C. Dynamic Operation Mode</label><br>
+    <label><input type="radio" name="reponse8" value="3"> D. Document Oriented Module</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question9">
     <h4>Question 9 :</h4>
-        <h5>Quelle méthode est utilisée pour sélectionner un élément dans la page par son id en JavaScript ?</h5>
-            <button class="reponse1">A. document.getElementByClass("monId")</button>
-            <button class="reponse2">B. document.querySelector("monId")</button>
-            <button class="reponse3">C. document.getElement("monId")</button>
-            <button class="reponse4">D. document.getElementById("monId")</button>
-            <div class="explication"></div>
+    <h5>Quelle méthode est utilisée pour sélectionner un élément dans la page par son id en JavaScript ?</h5>
+
+    <label><input type="radio" name="reponse9" value="0"> A. document.getElementByClass("monId")</label><br>
+    <label><input type="radio" name="reponse9" value="1"> B. document.querySelector("monId")</label><br>
+    <label><input type="radio" name="reponse9" value="2"> C. document.getElement("monId")</label><br>
+    <label><input type="radio" name="reponse9" value="3"> D. document.getElementById("monId")</label>
+
+    <div class="explication"></div>
 </section>
+
 <section class="question10">
     <h4>Question 10 :</h4>
-        <h5>Que retourne une fonction JavaScript si aucune valeur n’est explicitement renvoyée avec return ?</h5>
-            <button class="reponse1">A. 0</button>
-            <button class="reponse2">B. null</button>
-            <button class="reponse3">C. undefined</button>
-            <button class="reponse4">D. "" (chaîne vide)</button>
-            <div class="explication"></div>
+    <h5>Que renvoie une fonction JavaScript lorsqu’aucune instruction return n’est utilisée ?</h5>
+
+    <label><input type="radio" name="reponse10" value="0"> A. 0</label><br>
+    <label><input type="radio" name="reponse10" value="1"> B. null</label><br>
+    <label><input type="radio" name="reponse10" value="2"> C. undefined</label><br>
+    <label><input type="radio" name="reponse10" value="3"> D. ""</label>
+
+    <div class="explication"></div>
 </section>
+
 </div>
-<script src="script.js"></script>  
+
+<script src="script.js"></script>
+
 </body>
 </html>
