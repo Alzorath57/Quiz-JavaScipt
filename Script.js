@@ -1,136 +1,173 @@
 let score = 0;
 let questionActuelle = 1;
+const TOTAL = 10;
 
 const bonnesReponses = {
-  1: "2",
-  2: "1",
-  3: "1",
-  4: "0",
-  5: "2",
-  6: "1",
-  7: "2",
-  8: "0",
-  9: "3",
-  10: "2",
+  1: "2", 2: "1", 3: "1", 4: "0", 5: "2",
+  6: "1", 7: "2", 8: "0", 9: "3", 10: "2",
 };
 
 const explications = {
-  1: "JavaScript sert à rendre une page web interactive (animations, clics, etc.).",
-  2: "La syntaxe moderne utilise 'let' ou 'const'.",
-  3: '"42" est une chaîne de caractères (string).',
-  4: "JavaScript s’exécute principalement dans le navigateur.",
-  5: "'const' permet de déclarer une constante.",
-  6: "console.log() affiche un message dans la console.",
-  7: "Un Boolean est true ou false.",
-  8: "DOM signifie Document Object Model.",
-  9: "getElementById() permet de sélectionner un élément par son id.",
-  10: "Sans return, une fonction renvoie undefined.",
+  1:  "JavaScript rend les pages web interactives (animations, clics, etc.).",
+  2:  "La syntaxe moderne utilise 'let' pour une variable ou 'const' pour une constante.",
+  3:  '"42" entre guillemets est une chaîne de caractères (String), pas un nombre.',
+  4:  "JavaScript s'exécute dans le navigateur côté client.",
+  5:  "'const' déclare une constante : sa valeur ne peut pas être réassignée.",
+  6:  "console.log() affiche un message dans la console du navigateur (F12).",
+  7:  "Un Boolean vaut true ou false — c'est un type primitif en JavaScript.",
+  8:  "DOM = Document Object Model, la représentation de la page en arbre d'objets.",
+  9:  "getElementById() sélectionne un élément unique via son attribut id.",
+  10: "Sans return, une fonction renvoie automatiquement undefined.",
 };
 
-// 🔹 Afficher une question
-function afficherQuestion(numero) {
-  // cacher toutes les questions
-  document.querySelectorAll("section").forEach((q) => {
-    q.style.display = "none";
-  });
+// ─── Utilitaires UI ───────────────────────────────────────────────────────────
 
-  // afficher la bonne question
-  const question = document.querySelector(`.question${numero}`);
-  if (question) question.style.display = "block";
-
-  // mettre à jour compteur
-  document.getElementById("num-question").textContent = numero;
-
-  // reset UI
-  document.getElementById("btn-suivant").disabled = true;
-  document.getElementById("btn-valider").disabled = false;
-
-  // reset explications
-  document.querySelectorAll(".explication").forEach((e) => {
-    e.textContent = "";
-    e.style.color = "";
-  });
+function updateProgressBar() {
+  const pct = ((questionActuelle - 1) / TOTAL) * 100;
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("num-question").textContent = questionActuelle;
 }
 
-// 🔹 Valider réponse
+function updateScoreLive() {
+  document.getElementById("score-live").textContent = score;
+}
+
+// ─── Afficher une question ────────────────────────────────────────────────────
+
+function afficherQuestion(numero) {
+  document.querySelectorAll(".question").forEach(q => q.style.display = "none");
+
+  const q = document.querySelector(`.question${numero}`);
+  if (q) q.style.display = "block";
+
+  updateProgressBar();
+
+  document.getElementById("btn-valider").disabled = false;
+  document.getElementById("btn-suivant").disabled = true;
+
+  // reset explication
+  const exp = q && q.querySelector(".explication");
+  if (exp) {
+    exp.textContent = "";
+    exp.className = "explication";
+  }
+
+  // reset labels
+  if (q) {
+    q.querySelectorAll("label").forEach(l => {
+      l.classList.remove("correct", "wrong");
+    });
+  }
+}
+
+// ─── Valider réponse ─────────────────────────────────────────────────────────
+
 function validerReponse() {
   const reponse = document.querySelector(
-    `input[name="reponse${questionActuelle}"]:checked`,
+    `input[name="reponse${questionActuelle}"]:checked`
   );
 
   if (!reponse) {
-    alert("Choisis une réponse !");
+    // Petit shake visuel sur les choix
+    const choices = document.querySelector(`.question${questionActuelle} .choices`);
+    choices.style.animation = "none";
+    choices.offsetHeight; // reflow
+    choices.style.animation = "shake 0.3s ease";
     return;
   }
 
-  const explicationDiv = document.querySelector(
-    `.question${questionActuelle} .explication`,
-  );
-
-  // éviter double validation
-  const inputs = document.querySelectorAll(
-    `input[name="reponse${questionActuelle}"]`,
-  );
-
-  inputs.forEach((i) => (i.disabled = true));
+  // Désactiver les inputs
+  document.querySelectorAll(`input[name="reponse${questionActuelle}"]`)
+    .forEach(i => i.disabled = true);
   document.getElementById("btn-valider").disabled = true;
   document.getElementById("btn-suivant").disabled = false;
 
-  // correction
-  if (reponse.value === bonnesReponses[questionActuelle]) {
+  const estCorrect = reponse.value === bonnesReponses[questionActuelle];
+  const explicationDiv = document.querySelector(`.question${questionActuelle} .explication`);
+
+  // Colorier les labels
+  document.querySelectorAll(`input[name="reponse${questionActuelle}"]`).forEach(input => {
+    const label = input.closest("label");
+    if (input.value === bonnesReponses[questionActuelle]) {
+      label.classList.add("correct");
+    } else if (input.checked && !estCorrect) {
+      label.classList.add("wrong");
+    }
+  });
+
+  // Explication
+  if (estCorrect) {
     score++;
-    explicationDiv.textContent =
-      "✅ Bonne réponse ! " + explications[questionActuelle];
-    explicationDiv.style.color = "green";
+    updateScoreLive();
+    explicationDiv.textContent = "✅ Bonne réponse ! " + explications[questionActuelle];
+    explicationDiv.className = "explication show success";
   } else {
-    explicationDiv.textContent =
-      "❌ Mauvaise réponse. " + explications[questionActuelle];
-    explicationDiv.style.color = "red";
+    explicationDiv.textContent = "❌ Mauvaise réponse. " + explications[questionActuelle];
+    explicationDiv.className = "explication show error";
   }
 }
 
-// 🔹 Question suivante
+// ─── Question suivante ────────────────────────────────────────────────────────
+
 function nextQuestion() {
   questionActuelle++;
-
-  if (questionActuelle > 10) {
+  if (questionActuelle > TOTAL) {
     afficherResultat();
-    return;
+  } else {
+    afficherQuestion(questionActuelle);
   }
-
-  afficherQuestion(questionActuelle);
 }
 
-// 🔹 Affichage résultat final
+// ─── Résultat final ───────────────────────────────────────────────────────────
+
 function afficherResultat() {
+  // Barre à 100%
+  document.getElementById("progress-fill").style.width = "100%";
+
+  let emoji, msg;
+  if (score === 10)      { emoji = "🏆"; msg = "Score parfait, bravo !"; }
+  else if (score >= 8)   { emoji = "🎉"; msg = "Excellent travail !"; }
+  else if (score >= 6)   { emoji = "👍"; msg = "Pas mal, continue comme ça !"; }
+  else if (score >= 4)   { emoji = "📚"; msg = "Encore un peu de révision !"; }
+  else                   { emoji = "💪"; msg = "Retente ta chance, tu peux faire mieux !"; }
+
   document.querySelector(".quiz-container").innerHTML = `
-    <h2>🎉 Quiz terminé !</h2>
-    <p>Ton score final est : <strong>${score}/10</strong></p>
-    <button id="btn-restart">Recommencer</button>
+    <div class="result-screen">
+      <div class="result-emoji">${emoji}</div>
+      <h2>Quiz terminé !</h2>
+      <div class="result-score">${score}<span style="font-size:1.5rem;color:var(--muted)">/${TOTAL}</span></div>
+      <p class="result-msg">${msg}</p>
+      <button class="btn-restart-final" id="btn-restart-final">↺ Recommencer</button>
+    </div>
   `;
 
-  document.getElementById("btn-restart").addEventListener("click", restartQuiz);
+  document.getElementById("btn-restart-final").addEventListener("click", restartQuiz);
 }
 
-// 🔹 Restart
+// ─── Restart ──────────────────────────────────────────────────────────────────
+
 function restartQuiz() {
   score = 0;
   questionActuelle = 1;
-
-  location.reload(); // solution simple et propre
+  updateScoreLive();
+  location.reload();
 }
 
-// 🔹 Init
+// ─── Init ─────────────────────────────────────────────────────────────────────
+
 document.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("btn-valider")
-    .addEventListener("click", validerReponse);
-
-  document
-    .getElementById("btn-suivant")
-    .addEventListener("click", nextQuestion);
-
+  document.getElementById("btn-valider").addEventListener("click", validerReponse);
+  document.getElementById("btn-suivant").addEventListener("click", nextQuestion);
   document.getElementById("btn-restart").addEventListener("click", restartQuiz);
+
+  // Animation shake CSS dynamique
+  const style = document.createElement("style");
+  style.textContent = `@keyframes shake {
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-6px)}
+    75%{transform:translateX(6px)}
+  }`;
+  document.head.appendChild(style);
 
   afficherQuestion(1);
 });
